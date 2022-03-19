@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/Choubey-Shreya/spring-petclinic'
+                git 'https://github.com/Choubey-Shreya/spring-petclinic.git'
             }
          }        
        stage('Build'){
