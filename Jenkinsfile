@@ -1,17 +1,20 @@
 pipeline{
     agent any
     environment {
-        PATH = "$PATH:/usr/share/maven/bin"
+        PATH = "$PATH:/opt/apache-maven-3.8.5/bin"
     }
+    
     stages{
+       
        stage('GetCode'){
             steps{
-                git 'https://github.com/Choubey-Shreya/spring-petclinic.git'
+                git branch: 'main', url: 'https://github.com/Choubey-Shreya/spring-petclinic.git'
             }
          }        
        stage('Build'){
             steps{
                 sh 'mvn clean package'
+                
             }
          }
         stage('SonarQube analysis') {
