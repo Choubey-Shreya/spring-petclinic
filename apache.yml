@@ -8,4 +8,4 @@
         dest: /home/petclinic/
         src: /var/lib/jenkins/workspace/ansible-demo/target/spring-petclinic-2.6.0-SNAPSHOT.jar
     - name: "Deploy Jar file"
-      shell: "java -jar target/*.jar"
+      shell: "java -jar /home/petclinic/*.jar"
