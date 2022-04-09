@@ -15,10 +15,10 @@
         name: httpd
         state: started
     - name: "Create jar file"
-    - shell: "./mvnw package"
+      shell: "./mvnw package"
     - name: "Copy jar file"
       copy: 
         dest: /home/petclinic/
         src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
     - name: "Deploy Jar file"
-    - shell: "java -jar target/*.jar"
+      shell: "java -jar target/*.jar"
