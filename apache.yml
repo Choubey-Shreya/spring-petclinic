@@ -11,11 +11,13 @@
         name: httpd
         state: started
         enabled: True
+    - name: Create jar file
+        shell: "./mvnw package"
     - name: Copy jar file
       copy:
         src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
         dest: /home/petclinic/
     - name: Deploy Jar file
-        shell: "java -jar /home/petclinic/spring-petclinic-2.6.0-SNAPSHOT.jar"
+        shell: "java -jar target/*.jar"
 
 ...
