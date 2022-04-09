@@ -1,7 +1,2 @@
-- hosts: [
-        "54.234.65.130" ansible_user=ubuntu
-      ], 
-  tasks:
-    - name: install pip
-      ansible_python_interpreter: /usr/bin/python
-
+[webservers]
+ "54.234.65.130" ansible_user=ubuntu
