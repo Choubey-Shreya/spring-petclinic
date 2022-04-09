@@ -3,11 +3,9 @@
   become: true
   hosts: webservers
   tasks: 
-    - name: "Create jar file"
-      shell: "./mvnw package"
     - name: "Copy jar file"
       copy: 
         dest: /home/petclinic/
-        src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
+        src: /var/lib/jenkins/workspace/ansible-demo/target/spring-petclinic-2.6.0-SNAPSHOT.jar
     - name: "Deploy Jar file"
       shell: "java -jar target/*.jar"
