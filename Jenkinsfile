@@ -1,37 +1,24 @@
 pipeline{
     agent any
     tools{
-        maven 'apache-maven-3.8.5'
+        maven 'apache-maven-3.6.0'
     }
-    
     stages{
-       
-       stage('GetCode'){
+        stage('SCM Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/Choubey-Shreya/spring-petclinic.git'
-                echo 'HELLO path'
-                sh 'java --version'
-                sh 'mvn --version'
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                    echo "MAVEN_HOME = ${MAVEN_HOME}"
-                '''
+                git branch: 'main', url: 'https://github.com/Choubey-Shreya/spring-petclinic'
             }
-         }        
-       stage('Build'){
+        }
+        stage('Build'){
             steps{
-                sh 'mvn clean package'
+                sh './mvnw package'
                 
             }
          }
-        stage('SonarQube analysis') {
-        steps{
-        withSonarQubeEnv('sonarqube-7.1') { 
-        sh "mvn sonar:sonar"
-    }
+        stage('Execute Ansible'){
+            steps{
+                ansiblePlaybook credentialsId: 'private-key1', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'apache.yml'
+            }
         }
-        }
-       
     }
 }
