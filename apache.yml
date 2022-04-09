@@ -15,9 +15,9 @@
         name: httpd
         state: started
     - 
-      goals: "clean install"
-      maven: ~
-      pom-file: pom.xml
+      name: "Create jar file"
+    -
+      shell: "./mvnw package"
     - 
       copy: 
         dest: /home/petclinic/
