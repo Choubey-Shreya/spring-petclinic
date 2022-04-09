@@ -11,8 +11,11 @@
         name: httpd
         state: started
         enabled: True
-    - name: Deploy static website
+    - name: Copy jar file
       copy:
-        src: index.html
-        dest: /var/www/html/
+        src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
+        dest: /home/petclinic/
+    - name: Deploy Jar file
+        shell: "java -jar /home/petclinic/spring-petclinic-2.6.0-SNAPSHOT.jar"
+
 ...
