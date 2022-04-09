@@ -2,6 +2,10 @@
 - 
   become: true
   hosts: webservers
+  sudo: no
+  connection: ssh
+  remote_user: ubuntu
+  gather_facts: yes
   tasks: 
     - 
       name: "Install packages"
