@@ -3,17 +3,6 @@
   become: true
   hosts: webservers
   tasks: 
-    - 
-      name: "Install packages"
-      yum: 
-        name: httpd
-        state: present
-    - 
-      name: "Start Apache server"
-      service: 
-        enabled: true
-        name: httpd
-        state: started
     - name: "Create jar file"
       shell: "./mvnw package"
     - name: "Copy jar file"
