@@ -4,12 +4,6 @@
   hosts: webservers
   tasks: 
     - 
-      name: Install requests python package
-      pip:
-        name: requests
-      vars:
-        ansible_python_interpreter: /usr/bin/python3
-    - 
       name: "Install packages"
       yum: 
         name: httpd
