@@ -1,23 +1,29 @@
----
-- hosts: webservers 
-  become: True
-  tasks:
-    - name: Install packages
-      yum:
-        name: "httpd"
-        state: "present"
-    - name: Start Apache server
-      service:
+--- 
+- 
+  become: true
+  hosts: webservers
+  tasks: 
+    - 
+      name: "Install packages"
+      yum: 
+        name: httpd
+        state: present
+    - 
+      name: "Start Apache server"
+      service: 
+        enabled: true
         name: httpd
         state: started
-        enabled: True
-    - name: Create jar file
-        shell: "./mvnw package"
-    - name: Copy jar file
-      copy:
-        src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
+    - 
+      goals: "clean install"
+      maven: ~
+      pom-file: pom.xml
+    - 
+      copy: 
         dest: /home/petclinic/
-    - name: Deploy Jar file
-        shell: "java -jar target/*.jar"
-
-...
+        src: target/spring-petclinic-2.6.0-SNAPSHOT.jar
+      name: "Copy jar file"
+    - 
+      name: "Deploy Jar file"
+    - 
+      shell: "java -jar target/*.jar"
